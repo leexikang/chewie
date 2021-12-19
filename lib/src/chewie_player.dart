@@ -171,7 +171,11 @@ class ChewieState extends State<Chewie> {
 
     // The wakelock plugins checks whether it needs to perform an action internally,
     // so we do not need to check Wakelock.isEnabled.
-    Wakelock.disable();
+
+    if (!widget.controller.allowedScreenSleep) {
+      Wakelock.disable();
+    }
+
 
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
